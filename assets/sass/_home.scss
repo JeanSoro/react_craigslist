@@ -1,0 +1,88 @@
+.home {
+    h1 {
+        color: #fff;
+        font-size: 4rem;
+        padding: 100px;
+        text-align: center;
+        text-transform: capitalize
+    }
+    .links-listing {
+        background: rgba(0,0,0,.5);
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 20px;
+        padding: 20px;
+        margin-bottom: 70px;
+
+        .categories {
+            .title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: #fff;
+    
+            }
+            .links-group {
+
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                .link {
+                    font-size: .8rem;
+                    font-weight: 300;
+                    margin-bottom: .5rem;
+                    text-decoration: none;
+                    color: #fff;
+                    &:hover {
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+
+    .trending {
+        max-width: 800px;
+        margin: 0 auto;
+
+        .search {
+            border: 1px solid #000;
+            border-radius: 5px;
+            font-size: 2rem;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .trends-title {
+            color:#fff;
+            font-size: 1rem;
+            fontweight: 300;
+            text-align: center;
+            padding: 20px;
+            text-transform: uppercase
+
+        }
+
+        .trends-tags {
+            text-align: center;
+            
+            .tag {
+                border: 1px solid #fff;
+                border-radius: 45px;
+                color: #fff;
+                display: inline-block;
+                margin-bottom: 20px;
+                margin-right: 20px;
+                padding: 10px 20px;
+                text-align: center;
+
+                &:hover {
+                    cursor: pointer;
+                    background: #fff;
+                    color: #000;
+                }
+                
+            }
+        }
+    }
+}

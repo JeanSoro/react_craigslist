@@ -1,0 +1,138 @@
+.listings-page {
+    background: #fff;
+
+    #filters {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: 50px 0;
+    }
+
+    .form-group {
+
+        display: flex;
+        flex-direction: column;
+        
+        label {
+            font-size: .8rem;
+            font-weight: 500;
+            margin-bottom: .8rem;
+        }
+
+        select {
+            background:#fff;
+            border-radius: 5px;
+            border: 2px solid #ADBDE2;
+            color: #1b1b1b;
+            font-size: 1.3rem;
+            margin-right: 20px;
+            // padding: 20px;
+            min-width: 100px;
+        }
+
+        &.button {
+            flex-direction: row;
+            align-items: flex-end;
+        }
+
+        .update-btn {
+            padding: 10px 20px;
+            background: #2A7DDD;
+            color: #fff;
+        }
+
+        .reset-btn {
+            background:#F7F8FA;
+    
+            &:hover {
+                background: red;
+            }
+        }
+
+        .update-btn,
+        .reset-btn {
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 20px;
+            padding: 10px 20px;  
+        }
+    }
+
+    #list-view {
+        background: #F7F8FA;
+        padding: 20px 0;
+
+        .white-box {
+            background: #fff;
+            padding: 20px;
+
+        }
+
+        .change-view {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .all-items {
+            display: grid;
+            grid-gap: 20px 20px;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 20px 0;
+
+            .item {
+                box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.37);
+                border-radius: 5px;
+                overflow: hidden;
+
+                .image {
+                    background: url('https://i.pinimg.com/736x/1c/b8/22/1cb822609b0d82914049b2c201edf3c6--sport-news.jpg');
+                    height: 250px;
+                    background-size: cover;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    padding: 10px;
+                    position: relative;
+
+                    .item-price {
+                        background: #fff;
+                        border-radius: 3px;
+                        color: green;
+                        padding: 5px 10px;
+                        position: absolute;
+                    }
+                }
+                
+                .details {
+                    padding: 10px;
+                    position: relative;
+
+                    .fa-star {
+                        cursor: pointer;
+                        position: absolute;
+                        top: 20px;
+                        right: 10px;
+                        font-size: 1.4rem;
+                        &:hover {
+                            color: gold;
+                        }
+                    }
+
+                    h5 {
+                        color: #27292d;
+                        font-size: .9rem;
+                        line-height: 1.5;
+                        margin-bottom: 5px;
+                        text-transform: capitalize;
+                
+                    }
+
+                    h6 {
+                      color: #565d68;
+                      font-size: .7rem;
+                      text-transform: capitalize;
+                    }
+                }
+            }
+        }
+    }
+}

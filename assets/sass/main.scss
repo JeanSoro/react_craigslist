@@ -1,66 +1,65 @@
 @import url( 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
 @import "reset";
+@import "home";
+@import "listings";
+
+* {
+  box-sizing: border-box;
+}
 
 body {
+
+  background-image: linear-gradient(135deg, rgba(52,69,247,.8) 0%, rgba(160,39,230,.8) 100%), url('/img/montreal-hero.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   font-family: 'Roboto', sans-serif;
-  // background: purple;
+  min-height: 100vh
+
 }
 
-h1 {
-  font-weight: 100;
-  font-size: 50px;
-}
+header {
 
-.home {
-  height: 100%;
-  width: 100%;
-  text-align: center;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 
-  img {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+  .fas {
+    margin-left: 10px;
   }
+  
+  .left-menu {
 
-  .Aligner {
-    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
 
-  .Aligner-item {
-    max-width: 50%;
-  }
-
-  .menu {
-    ul {
-      li {
-        padding: 10px 15px;
-        display: inline-block;
-        font-family: 'Roboto', sans-serif;
-        font-size: 18px;
-        font-weight: 500;
-      }
+    .logo {
+      font-size: 2rem;
+      padding-right: 15px;
     }
   }
 
-  .version-num {
-    background: #E8E8E8;
-    border-radius: 4px;
-    padding: 7px 15px;
-    display: inline-block;
-    font-size: 12px;
-    margin: 10px 0 20px;
-  }
+  .right-menu {
+    display: flex;
+    align-items: center;
 
-  a {
-    text-decoration: none;
-    color: #30395C;
-    transition: all 0.3s ease-in-out;
+    .post-btn {
+      font-weight: 300;
+      padding: 15px 20px;
+      text-transform: capitalize;
+      background: rgb(119, 196, 255);
+    }
 
-    &:hover {
-      color: #43D4D6;
+    .user-dropdown {
+      padding: 15px 20px;
     }
   }
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
