@@ -16,11 +16,11 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(15);
+var _reactDom = __webpack_require__(11);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(239);
+var _reactRouterDom = __webpack_require__(240);
 
 var _Header = __webpack_require__(117);
 
@@ -108,7 +108,7 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(15);
+var _reactDom = __webpack_require__(11);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -140,7 +140,7 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(15);
+var _reactDom = __webpack_require__(11);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -245,7 +245,7 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(15);
+var _reactDom = __webpack_require__(11);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -321,9 +321,13 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(15);
+var _reactDom = __webpack_require__(11);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _Gallery = __webpack_require__(122);
+
+var _Gallery2 = _interopRequireDefault(_Gallery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -368,156 +372,229 @@ var Details = function (_Component) {
                     'div',
                     { className: 'container' },
                     _react2.default.createElement(
-                        'section',
-                        { className: 'sub-menu' },
+                        'div',
+                        { className: 'white-box' },
                         _react2.default.createElement(
-                            'div',
-                            { className: 'direction' },
+                            'section',
+                            { className: 'sub-menu' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'prev' },
-                                'Prev'
+                                { className: 'direction' },
+                                _react2.default.createElement(
+                                    'a',
+                                    { className: 'prev', href: '#' },
+                                    'Prev'
+                                ),
+                                _react2.default.createElement(
+                                    'a',
+                                    { className: 'next', href: '#' },
+                                    'Next'
+                                )
                             ),
                             _react2.default.createElement(
-                                'div',
-                                { className: 'next' },
-                                'Next'
+                                'nav',
+                                { className: 'sub-links' },
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: '#' },
+                                    'More Ads by User'
+                                ),
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: '#' },
+                                    'Print'
+                                ),
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: '#' },
+                                    'Share'
+                                ),
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: '#' },
+                                    'Contact Seller'
+                                )
                             )
                         ),
                         _react2.default.createElement(
-                            'nav',
-                            { className: 'sub-links' },
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#' },
-                                'More Ads by User'
-                            ),
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#' },
-                                'Print'
-                            ),
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#' },
-                                'Share'
-                            ),
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#' },
-                                'Contact Seller'
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'section',
-                        null,
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'display-column' },
+                            'section',
+                            { className: 'content-area' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'display-gallery' },
+                                { className: 'display-column' },
+                                _react2.default.createElement(_Gallery2.default, null)
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'detail-column' },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'image-slider' },
+                                    { className: 'date-posted' },
+                                    'Posted: Jan 12th'
+                                ),
+                                _react2.default.createElement(
+                                    'h3',
+                                    { className: 'title' },
+                                    'Black 2016 BMW M'
+                                ),
+                                _react2.default.createElement(
+                                    'h4',
+                                    { className: 'cost' },
+                                    '$56,000'
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'car-features' },
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'main-image' },
+                                        { className: 'info' },
                                         _react2.default.createElement(
-                                            'div',
-                                            { className: 'left-arrow-btn' },
-                                            '<'
+                                            'label',
+                                            null,
+                                            'Vin'
                                         ),
                                         _react2.default.createElement(
-                                            'div',
-                                            { className: 'right-arrow-btn' },
-                                            '>'
+                                            'h5',
+                                            null,
+                                            'wueufhfhg'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            null,
+                                            'Mileage'
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            '5675'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            null,
+                                            'Transmission'
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            '6-Speed Automatic'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            null,
+                                            'Vin'
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            'wueufhfhg'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            null,
+                                            'Mileage'
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            '5675'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            null,
+                                            'Transmission'
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            '6-Speed Automatic'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            null,
+                                            'Vin'
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            'wueufhfhg'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            null,
+                                            'Mileage'
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            '5675'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            null,
+                                            'Transmission'
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            '6-Speed Automatic'
                                         )
                                     )
                                 ),
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'thumbnails' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'thumbnail-img' },
-                                        'Image'
-                                    )
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'detail-column' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'date-posted' },
-                                'Posted: Jan 12th'
-                            ),
-                            _react2.default.createElement(
-                                'h3',
-                                null,
-                                'Black 2016 BMW M'
-                            ),
-                            _react2.default.createElement(
-                                'h4',
-                                { className: 'cost' },
-                                'Black 2016 BMW M'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'car-features' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'info' },
+                                    { className: 'description' },
                                     _react2.default.createElement(
                                         'label',
                                         null,
-                                        'Vin'
+                                        'Description'
                                     ),
                                     _react2.default.createElement(
-                                        'h5',
+                                        'p',
                                         null,
-                                        'wueufhfhg'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'info' },
-                                    _react2.default.createElement(
-                                        'label',
-                                        null,
-                                        'Mileage'
+                                        'Lorem ipsum dolor amet la croix messenger bag seitan pabst polaroid sriracha skateboard cred succulents four loko woke paleo wolf gastropub. Yuccie flexitarian locavore DIY vinyl blog intelligentsia +1. Flannel beard hexagon truffaut vape hashtag, actually franzen jean shorts vinyl migas pop-up crucifix. Whatever raclette 3 wolf moon fanny pack ugh echo park succulents.'
                                     ),
                                     _react2.default.createElement(
-                                        'h5',
+                                        'p',
                                         null,
-                                        '5675'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'info' },
-                                    _react2.default.createElement(
-                                        'label',
-                                        null,
-                                        'Transmission'
+                                        'Lorem ipsum dolor amet la croix messenger bag seitan pabst polaroid sriracha skateboard cred succulents four loko woke paleo wolf gastropub. Yuccie flexitarian locavore DIY vinyl blog intelligentsia +1. Flannel beard hexagon truffaut vape hashtag, actually franzen jean shorts vinyl migas pop-up crucifix. Whatever raclette 3 wolf moon fanny pack ugh echo park succulents.'
                                     ),
                                     _react2.default.createElement(
-                                        'h5',
+                                        'p',
                                         null,
-                                        '6-Speed Automatic'
+                                        'Lorem ipsum dolor amet la croix messenger bag seitan pabst polaroid sriracha skateboard cred succulents four loko woke paleo wolf gastropub. Yuccie flexitarian locavore DIY vinyl blog intelligentsia +1. Flannel beard hexagon truffaut vape hashtag, actually franzen jean shorts vinyl migas pop-up crucifix. Whatever raclette 3 wolf moon fanny pack ugh echo park succulents.'
                                     )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'description' },
-                                _react2.default.createElement(
-                                    'p',
-                                    null,
-                                    'This is the description ting'
                                 )
                             )
                         )
@@ -550,7 +627,7 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(15);
+var _reactDom = __webpack_require__(11);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -732,7 +809,7 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(15);
+var _reactDom = __webpack_require__(11);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -962,6 +1039,138 @@ var Listings = function (_Component) {
 }(_react.Component);
 
 exports.default = Listings;
+
+/***/ }),
+
+/***/ 122:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(11);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Gallery = function (_Component) {
+    _inherits(Gallery, _Component);
+
+    function Gallery() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Gallery);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Gallery.__proto__ || Object.getPrototypeOf(Gallery)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            allImages: '',
+            currentImage: '',
+            currentIndex: 0
+
+        }, _this.loopCarImages = function () {
+            console.log(_this.state.allImages);
+            return _this.state.allImages.map(function (item, index) {
+                return _react2.default.createElement('div', { key: index, onClick: _this.selectedImage.bind(null, index), className: 'thumbnail-img', style: {
+                        "backgroundImage": 'url(\'' + item + '\')'
+                    } });
+            });
+        }, _this.nextArrowBtn = function () {
+            if (_this.state.currentIndex !== _this.state.allImages.length - 1) {
+                _this.setState({
+                    currentIndex: _this.state.currentIndex + 1
+                });
+            }
+        }, _this.previousArrowBtn = function () {
+            if (_this.state.currentIndex !== 0) {
+                _this.setState({
+                    currentIndex: _this.state.currentIndex - 1
+                });
+            }
+        }, _this.selectedImage = function (index) {
+            _this.setState({
+                currentIndex: index
+            });
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Gallery, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var allImages = ['https://images.craigslist.org/00N0N_idugwYz2hRQ_600x450.jpg', 'https://images.craigslist.org/00101_7LFMtwt3nCq_50x50c.jpg', 'https://images.craigslist.org/00t0t_2mNCXwmIxBf_50x50c.jpg', 'https://images.craigslist.org/00Q0Q_bHIBhunOdcn_50x50c.jpg', 'https://images.craigslist.org/00u0u_h1lmzwHLqCO_50x50c.jpg', 'https://images.craigslist.org/00z0z_8M6oeQER2YP_50x50c.jpg'];
+
+            this.setState({
+                allImages: allImages,
+                currentImage: allImages[this.state.currentIndex]
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            // destructuring this.props object by creating individual variables
+            var _props = this.props,
+                match = _props.match,
+                location = _props.location,
+                history = _props.history;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'display-gallery' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'image-slider' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'main-image' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'arrows left-arrow-btn', onClick: this.previousArrowBtn },
+                            _react2.default.createElement('i', { className: 'fas fa-chevron-left' })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'arrows right-arrow-btn', onClick: this.nextArrowBtn },
+                            _react2.default.createElement('i', { className: 'fas fa-chevron-right' })
+                        ),
+                        _react2.default.createElement('div', { className: 'image-1', style: {
+                                "backgroundImage": 'url(\'' + this.state.allImages[this.state.currentIndex] + '\')'
+                            } })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'thumbnails' },
+                    this.loopCarImages()
+                )
+            );
+        }
+    }]);
+
+    return Gallery;
+}(_react.Component);
+
+exports.default = Gallery;
 
 /***/ })
 

@@ -1,5 +1,6 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
+import Gallery from './components/Gallery'
 
 class Details extends Component {
   
@@ -14,10 +15,11 @@ class Details extends Component {
     return (
         <div className={'details-page'}>
             <div className={'container'}>
+                <div className={'white-box'}>
                 <section className={'sub-menu'}>
                     <div className={'direction'}>
-                        <div className={'prev'}>Prev</div>
-                        <div className={'next'}>Next</div>
+                        <a className={'prev'} href={'#'}>Prev</a>
+                        <a className={'next'} href={'#'}>Next</a>
                     </div>
                     <nav className={'sub-links'}>
                         <a href={'#'}>More Ads by User</a>
@@ -27,29 +29,39 @@ class Details extends Component {
                     </nav>
                 </section>
 
-                <section>
+                <section className={'content-area'}> 
                     <div className={'display-column'}>
-                        <div className={'display-gallery'}>
-                            <div className={'image-slider'}>
-                                <div className={'main-image'}>
-                                    <div className={'left-arrow-btn'}>
-                                        {'<'}
-                                    </div>
-                                    <div className={'right-arrow-btn'}>
-                                        {'>'}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={'thumbnails'}>
-                                <div className={'thumbnail-img'}>Image</div>
-                            </div>
-                        </div>
+                        <Gallery/>
                     </div>
                     <div className={'detail-column'}>
                         <div className={'date-posted'}>Posted: Jan 12th</div>
-                        <h3>Black 2016 BMW M</h3>
-                        <h4 className={'cost'}>Black 2016 BMW M</h4>
+                        <h3 className={'title'}>Black 2016 BMW M</h3>
+                        <h4 className={'cost'}>$56,000</h4>
                         <div className={'car-features'}>
+                            <div className={'info'}>
+                                <label>Vin</label>
+                                <h5>wueufhfhg</h5>
+                            </div>
+                            <div className={'info'}>
+                                <label>Mileage</label>
+                                <h5>5675</h5>
+                            </div>
+                            <div className={'info'}>
+                                <label>Transmission</label>
+                                <h5>6-Speed Automatic</h5>
+                            </div>
+                            <div className={'info'}>
+                                <label>Vin</label>
+                                <h5>wueufhfhg</h5>
+                            </div>
+                            <div className={'info'}>
+                                <label>Mileage</label>
+                                <h5>5675</h5>
+                            </div>
+                            <div className={'info'}>
+                                <label>Transmission</label>
+                                <h5>6-Speed Automatic</h5>
+                            </div>
                             <div className={'info'}>
                                 <label>Vin</label>
                                 <h5>wueufhfhg</h5>
@@ -64,11 +76,23 @@ class Details extends Component {
                             </div>
                         </div>
                         <div className={'description'}>
-                            <p>This is the description ting</p>
+                            <label>Description</label>
+                            <p>Lorem ipsum dolor amet la croix messenger bag seitan pabst polaroid sriracha skateboard cred succulents four loko woke paleo wolf gastropub. 
+                            Yuccie flexitarian locavore DIY vinyl blog intelligentsia +1. Flannel beard hexagon truffaut vape hashtag, actually franzen jean shorts vinyl migas pop-up crucifix. 
+                            Whatever raclette 3 wolf moon fanny pack ugh echo park succulents.</p>
+
+                            <p>Lorem ipsum dolor amet la croix messenger bag seitan pabst polaroid sriracha skateboard cred succulents four loko woke paleo wolf gastropub. 
+                            Yuccie flexitarian locavore DIY vinyl blog intelligentsia +1. Flannel beard hexagon truffaut vape hashtag, actually franzen jean shorts vinyl migas pop-up crucifix. 
+                            Whatever raclette 3 wolf moon fanny pack ugh echo park succulents.</p>
+
+                            <p>Lorem ipsum dolor amet la croix messenger bag seitan pabst polaroid sriracha skateboard cred succulents four loko woke paleo wolf gastropub. 
+                            Yuccie flexitarian locavore DIY vinyl blog intelligentsia +1. Flannel beard hexagon truffaut vape hashtag, actually franzen jean shorts vinyl migas pop-up crucifix. 
+                            Whatever raclette 3 wolf moon fanny pack ugh echo park succulents.</p>
+
                         </div>
                     </div>
-                </section>
-
+                 </section>
+                </div>
             </div>
         </div>
       )

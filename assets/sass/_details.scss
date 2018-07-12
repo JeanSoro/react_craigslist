@@ -1,0 +1,158 @@
+.details-page {
+    background: #F7F8FA;
+    padding: 20px 0;
+
+    .white-box {
+        background: #fff;
+        padding: 20px;
+    }
+
+    .sub-menu {
+
+        display: flex;
+        justify-content: space-between;
+
+        a {
+            color: #2A7DDD;
+            padding: 20px;
+            text-decoration: none;
+        }
+        
+        .direction {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .sub-links {
+            display: flex;
+            flex-direction: row;
+        }
+
+        
+    }
+
+    .content-area {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+
+        .display-column {
+
+            .display-gallery {
+
+                .image-slider {
+
+                    .main-image {
+
+                        position: relative;
+
+                        .arrows {
+                            cursor: pointer;
+                            top: 0;
+                            bottom: 0;
+                            width: 80px;
+                            padding: 0 15px;
+                            background: rgba(0,0,0,.3);
+                            position: absolute;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 1.8rem;
+                            color: #fff;
+
+                            &.left-arrow-btn {
+                                left: 0;
+                            }
+
+                            &.right-arrow-btn {
+                                right: 0;
+                            }
+                        }
+                        .image-1 {
+                            background-size: cover;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            width: 100%;
+                            height: 400px;
+                        }
+                    }
+                }
+
+                .thumbnails {
+
+                    padding: 5px 0;
+                    display: grid;
+                    grid-template-columns: repeat(6, 1fr);
+                    grid-gap: 5px;
+
+                    .thumbnail-img {
+                        cursor: pointer;
+                        background-size: cover;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        width: 100px;
+                        height: 100px;
+                    }
+                }
+
+            }
+        }
+
+        .detail-column {
+
+            .date-posted {
+                font-size: .9rem;
+                color: #424242;
+                margin-bottom: 15px;
+            }
+
+            .title {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .cost {
+                font-size: 1.7rem;
+                color: green;
+                font-weight: 500;
+                margin-bottom: 30px;
+            }
+
+            label {
+                display: block;
+                font-weight: 700;
+                font-size: .7rem;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+            }
+
+            .car-features {
+                border-bottom: 1px solid grey;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 15px;
+                margin-bottom: 30px;
+                padding-bottom: 30px;
+
+                .info {
+
+                    h5 {
+                        font-size: .8rem;
+                        font-weight: 300;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+
+            .description {
+                p {
+                    color: #424242;
+                    line-height: 1.5;
+                    font-size: .9rem;
+                    margin-bottom: 1.6em;
+                }
+            }
+        }
+    }
+}
