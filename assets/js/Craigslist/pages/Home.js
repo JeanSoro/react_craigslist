@@ -1,47 +1,69 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
 
 class Home extends Component {
   
     state = {
-      name: 'Jean'
+      categoriesData: ''
+    }
+
+    componentWillMount() {
+        // Make a request for a user with a given ID
+        axios.get('/api/categories')
+        .then((response) => {
+            this.setState({
+                categoriesData: response.data
+            }, () => {
+                console.log(this.state)
+            });
+        })
+        .catch((error)=> {
+            console.log(error);
+        });
     }
   
   loopCategories = () => {
-    let testArray = [1,2,3,4,5,6,7]
-    return testArray.map( ( category, index ) => {
-        return(
-            <div key={index} className={'categories'}>
-                <div className={'title'}>Community</div>
-                <div className={'links-group'}>
-                    <a href="#" className={'link'}>General</a>
-                    <a href="#" className={'link'}>Community</a>
 
-                    <a href="#" className={'link'}>Activities</a>
-                    <a href="#" className={'link'}>Local News</a>
+    if(this.state.categoriesData != '') {
+        return this.state.categoriesData.map( ( category, index ) => {
 
-                    <a href="#" className={'link'}>Events</a>
-                    <a href="#" className={'link'}>Pets</a>
+            const loopListings = () => {
+               return  category.listings.map((listing, index) => {
+                    return (
+                        <a  key={index} 
+                            href={`${category.title}/${listing.slug}`} 
+                            className={'link'}>{listing.name}
+                        </a>
+                        
+                    )
+                })
+            }
 
-                    <a href="#" className={'link'}>Childcare</a>
-                    <a href="#" className={'link'}>Lost + Found</a>
-
-                    <a href="#" className={'link'}>Classes</a>
-                    <a href="#" className={'link'}>Musician</a>
-
-                    <a href="#" className={'link'}>Groups</a>
-                    <a href="#" className={'link'}>Artists</a>
+            return(
+                <div key={index} className={'categories'}>
+                    <div className={'title'}>{category.title}</div>
+                    <div className={`links-group ${(category.title == 'jobs' || category.title == 'personals' || category.title == 'housing') ? 'single-col' : ''}`}>
+                        {loopListings()}
+                    </div>
                 </div>
-            </div>
-        )
-    })
+            )
+        })
+    } else {
+        return 'Loading'
+    }
+    
+    
   }
 
   loopTags = () => {
       let testTags = ['a','b','c','d','e','f','g']
-      return testTags.map( ( tag, index ) => {
+      return testTags.map( ( tag, i ) => {
         return (
-            <div key={index} className={'tag'}>Apple Macbook</div>
+            <div 
+                key={i} 
+                className={'tag'}>Apple Macbook
+            </div>
         )
       })
   }
