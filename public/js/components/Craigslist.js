@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 121:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66,8 +66,6 @@ var App = function (_Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       name: 'Jean'
-    }, _this.clickedBtn = function () {
-      console.log('swag');
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -80,9 +78,9 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_Header2.default, null),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/:city', component: _Header2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city/', component: _Home2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city', component: _Home2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city/:category', component: _Category2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city/:category/:listings', component: _Listings2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city/:category/:listings/:item', component: _Details2.default })
@@ -112,7 +110,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(121);
+var _App = __webpack_require__(122);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -144,6 +142,10 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _axios = __webpack_require__(68);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -167,15 +169,76 @@ var Header = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Header.__proto__ || Object.getPrototypeOf(Header)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      name: 'Joe'
-    }, _this.clickedBtn = function () {
-      console.log('swag');
+      cityDropDownMenu: false,
+      selectedCity: 'Montreal',
+      citiesData: []
+    }, _this.CityDropDownBtn = function () {
+      var cityDropDownMenu = _this.state.cityDropDownMenu;
+
+      _this.setState({
+        cityDropDownMenu: !cityDropDownMenu
+      });
+    }, _this.selectACity = function (city) {
+      _this.setState({
+        selectedCity: city
+      }, function () {
+        var citiesData = _this.state.citiesData;
+
+        var city = citiesData.filter(function (item) {
+          return item.title === _this.state.selectedCity;
+        });
+        var _this$props = _this.props,
+            match = _this$props.match,
+            history = _this$props.history;
+
+        history.push('/' + city[0].slug);
+      });
+    }, _this.citiesLoop = function () {
+      var citiesData = _this.state.citiesData;
+
+      return citiesData.map(function (item, index) {
+        return _react2.default.createElement(
+          'li',
+          {
+            key: index,
+            onClick: _this.selectACity.bind(null, item.title) },
+          item.title
+        );
+      });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Header, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      // Make a request for a user with a given ID
+      _axios2.default.get('/api/cities').then(function (response) {
+        var _props = _this2.props,
+            match = _props.match,
+            history = _props.history;
+
+        var city = response.data.filter(function (item) {
+          return item.slug == match.params.city;
+        });
+        _this2.setState({
+          citiesData: response.data,
+          selectedCity: city[0].title
+        }, function () {
+          console.log(_this2.state.citiesData);
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _state = this.state,
+          cityDropDownMenu = _state.cityDropDownMenu,
+          selectedCity = _state.selectedCity;
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -192,9 +255,18 @@ var Header = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { className: 'city' },
-              'Montreal',
-              _react2.default.createElement('i', { className: 'fas fa-chevron-down' })
+              { className: 'city-dropdown', onClick: this.CityDropDownBtn },
+              selectedCity,
+              _react2.default.createElement('i', { className: 'fas fa-chevron-down ' + (cityDropDownMenu ? 'fa-chevron-up' : 'fa-chevron-down') }),
+              _react2.default.createElement(
+                'div',
+                { className: 'scroll-area ' + (cityDropDownMenu ? 'active' : '') },
+                _react2.default.createElement(
+                  'ul',
+                  null,
+                  this.citiesLoop()
+                )
+              )
             )
           ),
           _react2.default.createElement(
@@ -631,7 +703,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(123);
+var _axios = __webpack_require__(68);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -659,6 +731,8 @@ var Home = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             categoriesData: ''
+
+            // setting up initial setting on pageload/by default using API from react-router.
         }, _this.loopCategories = function () {
 
             if (_this.state.categoriesData != '') {
@@ -709,12 +783,20 @@ var Home = function (_Component) {
     }
 
     _createClass(Home, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
             var _this2 = this;
 
+            var _props = this.props,
+                match = _props.match,
+                history = _props.history;
+
+            if (match.params.city == undefined) {
+                history.push('/mtl');
+            }
+
             // Make a request for a user with a given ID
-            _axios2.default.get('/api/categories').then(function (response) {
+            _axios2.default.get('/api/' + match.params.city).then(function (response) {
                 _this2.setState({
                     categoriesData: response.data
                 }, function () {
@@ -822,7 +904,7 @@ var Listings = function (_Component) {
             return testArray.map(function (category, index) {
                 return _react2.default.createElement(
                     'div',
-                    { className: 'item' },
+                    { key: index, className: 'item' },
                     _react2.default.createElement(
                         'div',
                         { className: 'image' },

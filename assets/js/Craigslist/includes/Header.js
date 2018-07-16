@@ -1,26 +1,90 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
+
+
 
 class Header extends Component {
   
     state = {
-      name: 'Joe'
+      cityDropDownMenu: false,
+      selectedCity: 'Montreal',
+      citiesData: []
+    }
+
+    
+    componentWillMount() {
+      // Make a request for a user with a given ID
+      axios.get(`/api/cities`)
+      .then(( response ) => {
+        const {match, history} = this.props
+        let city = response.data.filter( ( item ) => {
+          return item.slug == match.params.city
+        })
+          this.setState({
+              citiesData: response.data,
+              selectedCity: city[0].title
+          }, () => {
+              console.log(this.state.citiesData)
+          });
+      })
+      .catch(( error ) => {
+          console.log(error);
+      });
+    }
+
+    
+
+    CityDropDownBtn = () => {
+      const {cityDropDownMenu} = this.state
+      this.setState({
+        cityDropDownMenu: !cityDropDownMenu
+      })
+    }
+
+    selectACity = (city) => {
+      this.setState({
+        selectedCity: city
+      }, () => {
+        const {citiesData} = this.state
+        let city = citiesData.filter( ( item ) => {
+          return item.title === this.state.selectedCity
+        })
+        const {match, history} = this.props
+            history.push(`/${city[0].slug}`)
+      })
+    }
+
+    citiesLoop = () => {
+      const {citiesData} = this.state
+      return citiesData.map(( item, index ) => {
+        return (
+          <li 
+            key={index} 
+            onClick={this.selectACity.bind(null, item.title)}>{item.title}
+          </li>
+        )
+      })
     }
   
-  clickedBtn = () => {
-    console.log('swag')
-  }
 
   render () {
+    const {cityDropDownMenu, selectedCity} = this.state;
     return (
         <div className={'container'}>
           <header>
             <div className={'left-menu'}>
               <div className={'logo'}>Craigslist</div>
-              <div className={'city'}>Montreal
-                <i className={`fas fa-chevron-down`}></i>
+              <div className={'city-dropdown'} onClick={this.CityDropDownBtn}>{selectedCity}
+                <i className={`fas fa-chevron-down ${(cityDropDownMenu) ? 'fa-chevron-up': 'fa-chevron-down'}`}/>
+                <div className={`scroll-area ${(cityDropDownMenu) ? 'active': ''}`}>
+                  <ul>
+                    {this.citiesLoop()}
+                  </ul>
+                </div>
             </div>
             </div>
+
             <div className={'right-menu'}>
               <div className={'user-img'}>img</div>
               <div className={'user-dropdown'}>my account 

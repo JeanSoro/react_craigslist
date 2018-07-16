@@ -11,7 +11,7 @@ class Listings extends Component {
         let testArray = [1,2,3,4,5,6,7,8]
         return testArray.map( ( category, index ) => {
             return(
-                <div className={'item'}>
+                <div key={index} className={'item'}>
                     <div className={'image'}>
                     <div className={'item-price'}>$10.000</div>
                     Image</div>

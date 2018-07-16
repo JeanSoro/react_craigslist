@@ -8,9 +8,15 @@ class Home extends Component {
       categoriesData: ''
     }
 
-    componentWillMount() {
+    // setting up initial setting on pageload/by default using API from react-router.
+    componentDidMount() {
+        const {match, history} = this.props
+        if(match.params.city == undefined) {
+            history.push('/mtl')
+        }
+
         // Make a request for a user with a given ID
-        axios.get('/api/categories')
+        axios.get(`/api/${match.params.city}`)
         .then((response) => {
             this.setState({
                 categoriesData: response.data
@@ -34,8 +40,7 @@ class Home extends Component {
                         <a  key={index} 
                             href={`${category.title}/${listing.slug}`} 
                             className={'link'}>{listing.name}
-                        </a>
-                        
+                        </a>  
                     )
                 })
             }

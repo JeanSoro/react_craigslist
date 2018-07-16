@@ -13,17 +13,14 @@ class App extends Component {
       name: 'Jean'
     }
   
-  clickedBtn = () => {
-    console.log('swag')
-  }
 
   render () {
     return (
       <Router>
           <div>
-            <Header/>
+              <Route path="/:city" component={Header}/>
               <Route exact path="/" component={Home}/>
-              <Route exact path="/:city/" component={Home}/>
+              <Route exact path="/:city" component={Home}/>
               <Route exact path="/:city/:category" component={Category}/>
               <Route exact path="/:city/:category/:listings" component={Listings}/>
               <Route exact path="/:city/:category/:listings/:item" component={Details}/>
