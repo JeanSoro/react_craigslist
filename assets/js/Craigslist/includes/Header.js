@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 
 
-
 class Header extends Component {
   
     state = {
@@ -25,7 +24,11 @@ class Header extends Component {
               citiesData: response.data,
               selectedCity: city[0].title
           }, () => {
-              console.log(this.state.citiesData)
+
+                document.body.style.backgroundImage = 
+                `linear-gradient(135deg, rgba(52,69,247,.8) 0%, 
+                rgba(160,39,230,.8) 100%), url(${city[0].img})`
+              // console.log(this.state.citiesData)
           });
       })
       .catch(( error ) => {

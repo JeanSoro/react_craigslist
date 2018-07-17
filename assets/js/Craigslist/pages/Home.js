@@ -30,15 +30,15 @@ class Home extends Component {
     }
   
   loopCategories = () => {
+      const {match,history} = this.props
+        if(this.state.categoriesData != '') {
+            return this.state.categoriesData.map( ( category, index ) => {
 
-    if(this.state.categoriesData != '') {
-        return this.state.categoriesData.map( ( category, index ) => {
-
-            const loopListings = () => {
-               return  category.listings.map((listing, index) => {
+                const loopListings = () => {
+                return  category.listings.map((listing, index) => {
                     return (
                         <a  key={index} 
-                            href={`${category.title}/${listing.slug}`} 
+                            href={`${match.params.city}/${category.title}/${listing.slug}`} 
                             className={'link'}>{listing.name}
                         </a>  
                     )
@@ -47,7 +47,7 @@ class Home extends Component {
 
             return(
                 <div key={index} className={'categories'}>
-                    <div className={'title'}>{category.title}</div>
+                    <a href={`/${match.params.city}/${category.title}`} className={'title'}>{category.title}</a>
                     <div className={`links-group ${(category.title == 'jobs' || category.title == 'personals' || category.title == 'housing') ? 'single-col' : ''}`}>
                         {loopListings()}
                     </div>
@@ -55,7 +55,7 @@ class Home extends Component {
             )
         })
     } else {
-        return 'Loading'
+        return 'Page loading...'
     }
     
     

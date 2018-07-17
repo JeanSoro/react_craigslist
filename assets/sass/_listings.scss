@@ -8,6 +8,13 @@
         padding: 50px 0;
     }
 
+    .make-model-component {
+        display: flex;
+        flex-direction: row;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    }
+
     .form-group {
 
         display: flex;

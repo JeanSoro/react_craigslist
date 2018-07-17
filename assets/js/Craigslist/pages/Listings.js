@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 class Listings extends Component {
   
     state = {
-      name: 'Joe'
+      name: 'Jean'
     }
 
     loopItems = () => {

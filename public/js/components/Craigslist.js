@@ -82,7 +82,7 @@ var App = function (_Component) {
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city', component: _Home2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city/:category', component: _Category2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city/:category/:listings', component: _Listings2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city/:category/:listings', component: _Category2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/:city/:category/:listings/:item', component: _Details2.default })
         )
       );
@@ -142,7 +142,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(68);
+var _axios = __webpack_require__(42);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -226,7 +226,9 @@ var Header = function (_Component) {
           citiesData: response.data,
           selectedCity: city[0].title
         }, function () {
-          console.log(_this2.state.citiesData);
+
+          document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n                rgba(160,39,230,.8) 100%), url(' + city[0].img + ')';
+          // console.log(this.state.citiesData)
         });
       }).catch(function (error) {
         console.log(error);
@@ -308,7 +310,7 @@ exports.default = Header;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -321,7 +323,13 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _axios = __webpack_require__(42);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -330,47 +338,334 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Category = function (_Component) {
-  _inherits(Category, _Component);
+    _inherits(Category, _Component);
 
-  function Category() {
-    var _ref;
+    function Category() {
+        var _ref;
 
-    var _temp, _this, _ret;
+        var _temp, _this, _ret;
 
-    _classCallCheck(this, Category);
+        _classCallCheck(this, Category);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Category.__proto__ || Object.getPrototypeOf(Category)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            min_price: 1000,
+            max_price: 15000,
+            sort_dropdown: 'newest',
+            view_select: 'gallery'
+        }, _this.loopItems = function () {
+            if (_this.state.itemsData != undefined) {
+                return _this.state.itemsData.map(function (item, index) {
+                    return _react2.default.createElement(
+                        'div',
+                        { key: index, className: 'item' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'image', style: {
+                                    backgroundImage: 'url(\'' + item.images[0] + '\')'
+                                } },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'item-price' },
+                                '$',
+                                item.price
+                            ),
+                            'Image'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'details' },
+                            _react2.default.createElement('i', { className: 'far fa-star' }),
+                            _react2.default.createElement(
+                                'h5',
+                                null,
+                                item.title
+                            ),
+                            _react2.default.createElement(
+                                'h6',
+                                null,
+                                item.city
+                            )
+                        )
+                    );
+                });
+            }
+        }, _this.showMakeAndModelDropDown = function () {
+            // destructuring this.props object by creating variables
+            var _this$props = _this.props,
+                match = _this$props.match,
+                location = _this$props.location,
+                history = _this$props.history;
+
+            if (match.params.listings == 'cars-and-trucks') {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'make-model-component' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'form-group car-make' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Make'
+                        ),
+                        _react2.default.createElement(
+                            'select',
+                            { name: 'car_make', className: 'car-make', onChange: _this.handleChange },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'bmw' },
+                                'bmw'
+                            ),
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'mercedes' },
+                                'mercedes benz'
+                            ),
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'nissan' },
+                                'Nissan'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'form-group car-model' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Model'
+                        ),
+                        _react2.default.createElement(
+                            'select',
+                            { name: 'car_model', className: 'car-model', onChange: _this.handleChange },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'M6' },
+                                'M6'
+                            ),
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'X6' },
+                                'M6'
+                            ),
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'c-series' },
+                                'C-series'
+                            )
+                        )
+                    )
+                );
+            }
+        }, _this.handleChange = function (e) {
+            var name = e.target.name;
+            var value = e.target.type == 'checkbox' ? e.target.checked : e.target.value;
+
+            _this.setState(_defineProperty({}, name, value), function () {
+                console.log(_this.state);
+            });
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Category.__proto__ || Object.getPrototypeOf(Category)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      name: 'Joe'
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
+    _createClass(Category, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
 
-  _createClass(Category, [{
-    key: 'render',
-    value: function render() {
-      // destructuring this.props object by creating variables
-      var _props = this.props,
-          match = _props.match,
-          location = _props.location,
-          history = _props.history;
+            var _props = this.props,
+                match = _props.match,
+                history = _props.history;
 
-      return _react2.default.createElement(
-        'div',
-        { className: 'category' },
-        _react2.default.createElement(
-          'div',
-          { className: 'container' },
-          'category is ',
-          match.params.category
-        )
-      );
-    }
-  }]);
+            // Make a request for a user with a given ID
 
-  return Category;
+            _axios2.default.get('/api/' + match.params.city + '/' + match.params.category).then(function (response) {
+                _this2.setState({
+                    itemsData: response.data
+                }, function () {
+                    console.log(_this2.state);
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            // destructuring this.props object by creating variables
+            var _props2 = this.props,
+                match = _props2.match,
+                location = _props2.location,
+                history = _props2.history;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'listings-page' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'container' },
+                    _react2.default.createElement(
+                        'section',
+                        { id: 'filters' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'form-group price' },
+                            _react2.default.createElement(
+                                'label',
+                                null,
+                                'Price'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'min-max' },
+                                _react2.default.createElement(
+                                    'select',
+                                    { name: 'min_price', value: this.state.min_price, className: 'min-price', onChange: this.handleChange },
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '0' },
+                                        '0'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '1000' },
+                                        '1000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '2500' },
+                                        '2500'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '3000' },
+                                        '3000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '5000' },
+                                        '5000'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'select',
+                                    { name: 'max_price', value: this.state.max_price, className: 'max-price', onChange: this.handleChange },
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '1000' },
+                                        '1000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '5000' },
+                                        '5000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '7000' },
+                                        '7000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '10000' },
+                                        '10000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '15000' },
+                                        '15000'
+                                    )
+                                )
+                            )
+                        ),
+                        this.showMakeAndModelDropDown(),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'form-group button' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'update-btn' },
+                                'Update'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'reset-btn' },
+                                'Reset'
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'section',
+                    { id: 'list-view' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'white-box' },
+                            _react2.default.createElement(
+                                'section',
+                                { className: 'change-view' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'form-group view-dropdown' },
+                                    _react2.default.createElement(
+                                        'select',
+                                        { name: 'view_select', value: this.state.view_select, className: 'view-select', onChange: this.handleChange },
+                                        _react2.default.createElement(
+                                            'option',
+                                            { value: 'gallery' },
+                                            'Gallery View'
+                                        ),
+                                        _react2.default.createElement(
+                                            'option',
+                                            { value: 'list' },
+                                            'List View'
+                                        ),
+                                        _react2.default.createElement(
+                                            'option',
+                                            { value: 'thumb' },
+                                            'Thumb View'
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'form-group sort-dropdown' },
+                                    _react2.default.createElement(
+                                        'select',
+                                        { name: 'sort_dropdown', value: this.state.sort_dropdown, className: 'sort-dropdown', onChange: this.handleChange },
+                                        _react2.default.createElement(
+                                            'option',
+                                            { value: 'newest' },
+                                            'Newest'
+                                        ),
+                                        _react2.default.createElement(
+                                            'option',
+                                            { value: 'oldest' },
+                                            'Oldest'
+                                        )
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'section',
+                                { className: 'all-items' },
+                                this.loopItems()
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Category;
 }(_react.Component);
 
 exports.default = Category;
@@ -703,7 +998,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(68);
+var _axios = __webpack_require__(42);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -734,6 +1029,9 @@ var Home = function (_Component) {
 
             // setting up initial setting on pageload/by default using API from react-router.
         }, _this.loopCategories = function () {
+            var _this$props = _this.props,
+                match = _this$props.match,
+                history = _this$props.history;
 
             if (_this.state.categoriesData != '') {
                 return _this.state.categoriesData.map(function (category, index) {
@@ -743,7 +1041,7 @@ var Home = function (_Component) {
                             return _react2.default.createElement(
                                 'a',
                                 { key: index,
-                                    href: category.title + '/' + listing.slug,
+                                    href: match.params.city + '/' + category.title + '/' + listing.slug,
                                     className: 'link' },
                                 listing.name
                             );
@@ -754,8 +1052,8 @@ var Home = function (_Component) {
                         'div',
                         { key: index, className: 'categories' },
                         _react2.default.createElement(
-                            'div',
-                            { className: 'title' },
+                            'a',
+                            { href: '/' + match.params.city + '/' + category.title, className: 'title' },
                             category.title
                         ),
                         _react2.default.createElement(
@@ -766,7 +1064,7 @@ var Home = function (_Component) {
                     );
                 });
             } else {
-                return 'Loading';
+                return 'Page loading...';
             }
         }, _this.loopTags = function () {
             var testTags = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
@@ -898,7 +1196,7 @@ var Listings = function (_Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Listings.__proto__ || Object.getPrototypeOf(Listings)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            name: 'Joe'
+            name: 'Jean'
         }, _this.loopItems = function () {
             var testArray = [1, 2, 3, 4, 5, 6, 7, 8];
             return testArray.map(function (category, index) {
