@@ -1,6 +1,8 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+import qs from 'query-string'
 
 class Category extends Component {
   
@@ -13,27 +15,46 @@ class Category extends Component {
 
     componentWillMount(){
         const {match, history} = this.props
-        
-        // Make a request for a user with a given ID
-        axios.get(`/api/${match.params.city}/${match.params.category}`)
-        .then((response) => {
-            this.setState({
-                itemsData: response.data
-            }, () => {
-                console.log(this.state)
+        const queryParams = qs.parse(this.props.location.search)
+        const {min_price, max_price, sort_dropdown, view_select} = queryParams
+
+        if( queryParams.min_price != undefined ) {
+            // Get request comes from URL after destructuring queryParams object above
+            axios.get(`/api/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}`)
+            .then((response) => {
+                this.setState({
+                    itemsData: response.data
+                }, () => {
+                    console.log(this.state)
+                });
+            })
+            .catch((error)=> {
+                console.log(error);
             });
-        })
-        .catch((error)=> {
-            console.log(error);
-        });
+        } else {
+            // Make a request for a user with a given ID
+            axios.get(`/api/${match.params.city}/${match.params.category}`)
+            .then((response) => {
+                this.setState({
+                    itemsData: response.data
+                }, () => {
+                    console.log(this.state)
+                });
+            })
+            .catch((error)=> {
+                console.log(error);
+            });
+        }
+
     }
 
     loopItems = () => {
+        const {match, history} = this.props
         if(this.state.itemsData != undefined) {
             return this.state.itemsData.map( ( item, index ) => {
                 return(
-                    <div key={index} className={'item'}>
-                        <div className={'image'} style={{
+                    <Link key={index} to={`/${match.params.city}/${match.params.category}/${match.params.listings}/${match.params.item}`} className={'item'}>
+                        <div  className={'image'} style={{
                             backgroundImage: `url('${item.images[0]}')`
                         }}>
                         <div className={'item-price'}>${item.price}</div>
@@ -43,7 +64,7 @@ class Category extends Component {
                             <h5>{item.title}</h5>
                             <h6>{item.city}</h6>
                         </div>
-                    </div>
+                     </Link>
                 )
             })
         }
@@ -74,8 +95,7 @@ class Category extends Component {
                     </div>
                 </div>
             )
-        }
-            
+        }     
     }
 
     handleChange = (e) => {
@@ -87,6 +107,15 @@ class Category extends Component {
         }, () => {
             console.log(this.state)
         })
+    }
+
+    submitFilters = () => {
+        const { match, location, history } = this.props
+        const {min_price, max_price, sort_dropdown, view_select} = this.state
+        // history.push(`/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}`)
+        const queryParams = qs.parse(this.props.location.search)
+        document.location.href = `/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}`   
+
     }
 
   
@@ -102,18 +131,30 @@ class Category extends Component {
                         <div className={'min-max'}>
                             <select name={'min_price'} value={this.state.min_price} className={'min-price'} onChange={this.handleChange}>
                                 <option value={'0'}>0</option>
-                                <option value={'1000'}>1000</option>
-                                <option value={'2500'}>2500</option>
-                                <option value={'3000'}>3000</option>
                                 <option value={'5000'}>5000</option>
+                                <option value={'10000'}>10000</option>
+                                <option value={'20000'}>20000</option>
+                                <option value={'30000'}>30000</option>
+                                <option value={'40000'}>40000</option>
+                                <option value={'50000'}>50000</option>
+                                <option value={'60000'}>60000</option>
+                                <option value={'70000'}>70000</option>
+                                <option value={'80000'}>80000</option>
+                                <option value={'90000'}>90000</option>
 
                             </select>
                             <select name={'max_price'} value={this.state.max_price} className={'max-price'} onChange={this.handleChange}>
-                                <option value={'1000'}>1000</option>
                                 <option value={'5000'}>5000</option>
-                                <option value={'7000'}>7000</option>
                                 <option value={'10000'}>10000</option>
-                                <option value={'15000'}>15000</option>
+                                <option value={'20000'}>20000</option>
+                                <option value={'30000'}>30000</option>
+                                <option value={'40000'}>40000</option>
+                                <option value={'50000'}>50000</option>
+                                <option value={'60000'}>60000</option>
+                                <option value={'70000'}>70000</option>
+                                <option value={'80000'}>80000</option>
+                                <option value={'90000'}>90000</option>
+                                <option value={'100000'}>100000</option>
                             </select>
                         </div>
                     </div>
@@ -121,7 +162,7 @@ class Category extends Component {
                     {this.showMakeAndModelDropDown()}
 
                     <div className={'form-group button'}>
-                        <div className={'update-btn'}>Update</div>
+                        <div className={'update-btn'} onClick={this.submitFilters}>Update</div>
                         <div className={'reset-btn'}>Reset</div>
                     </div>
 

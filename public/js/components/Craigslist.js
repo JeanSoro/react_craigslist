@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 122:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20,25 +20,25 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(266);
+var _reactRouterDom = __webpack_require__(41);
 
-var _Header = __webpack_require__(142);
+var _Header = __webpack_require__(143);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Home = __webpack_require__(145);
+var _Home = __webpack_require__(146);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Listings = __webpack_require__(146);
+var _Listings = __webpack_require__(147);
 
 var _Listings2 = _interopRequireDefault(_Listings);
 
-var _Details = __webpack_require__(144);
+var _Details = __webpack_require__(145);
 
 var _Details2 = _interopRequireDefault(_Details);
 
-var _Category = __webpack_require__(143);
+var _Category = __webpack_require__(144);
 
 var _Category2 = _interopRequireDefault(_Category);
 
@@ -96,7 +96,7 @@ exports.default = App;
 
 /***/ }),
 
-/***/ 141:
+/***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -110,7 +110,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(122);
+var _App = __webpack_require__(123);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -122,7 +122,7 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, null), ap
 
 /***/ }),
 
-/***/ 142:
+/***/ 143:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142,7 +142,9 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(42);
+var _reactRouterDom = __webpack_require__(41);
+
+var _axios = __webpack_require__(43);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -192,6 +194,7 @@ var Header = function (_Component) {
             history = _this$props.history;
 
         history.push('/' + city[0].slug);
+        document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n            rgba(160,39,230,.8) 100%), url(' + city[0].img + ')';
       });
     }, _this.citiesLoop = function () {
       var citiesData = _this.state.citiesData;
@@ -226,7 +229,6 @@ var Header = function (_Component) {
           citiesData: response.data,
           selectedCity: city[0].title
         }, function () {
-
           document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n                rgba(160,39,230,.8) 100%), url(' + city[0].img + ')';
           // console.log(this.state.citiesData)
         });
@@ -237,6 +239,9 @@ var Header = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _props2 = this.props,
+          match = _props2.match,
+          history = _props2.history;
       var _state = this.state,
           cityDropDownMenu = _state.cityDropDownMenu,
           selectedCity = _state.selectedCity;
@@ -251,8 +256,8 @@ var Header = function (_Component) {
             'div',
             { className: 'left-menu' },
             _react2.default.createElement(
-              'div',
-              { className: 'logo' },
+              _reactRouterDom.Link,
+              { to: '/' + match.params.city, className: 'logo' },
               'Craigslist'
             ),
             _react2.default.createElement(
@@ -277,7 +282,7 @@ var Header = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'user-img' },
-              'img'
+              _react2.default.createElement('i', { className: 'far fa-user' })
             ),
             _react2.default.createElement(
               'div',
@@ -303,7 +308,7 @@ exports.default = Header;
 
 /***/ }),
 
-/***/ 143:
+/***/ 144:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -323,9 +328,15 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(42);
+var _reactRouterDom = __webpack_require__(41);
+
+var _axios = __webpack_require__(43);
 
 var _axios2 = _interopRequireDefault(_axios);
+
+var _queryString = __webpack_require__(180);
+
+var _queryString2 = _interopRequireDefault(_queryString);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -357,11 +368,15 @@ var Category = function (_Component) {
             sort_dropdown: 'newest',
             view_select: 'gallery'
         }, _this.loopItems = function () {
+            var _this$props = _this.props,
+                match = _this$props.match,
+                history = _this$props.history;
+
             if (_this.state.itemsData != undefined) {
                 return _this.state.itemsData.map(function (item, index) {
                     return _react2.default.createElement(
-                        'div',
-                        { key: index, className: 'item' },
+                        _reactRouterDom.Link,
+                        { key: index, to: '/' + match.params.city + '/' + match.params.category + '/' + match.params.listings + '/' + match.params.item, className: 'item' },
                         _react2.default.createElement(
                             'div',
                             { className: 'image', style: {
@@ -395,10 +410,10 @@ var Category = function (_Component) {
             }
         }, _this.showMakeAndModelDropDown = function () {
             // destructuring this.props object by creating variables
-            var _this$props = _this.props,
-                match = _this$props.match,
-                location = _this$props.location,
-                history = _this$props.history;
+            var _this$props2 = _this.props,
+                match = _this$props2.match,
+                location = _this$props2.location,
+                history = _this$props2.history;
 
             if (match.params.listings == 'cars-and-trucks') {
                 return _react2.default.createElement(
@@ -469,6 +484,20 @@ var Category = function (_Component) {
             _this.setState(_defineProperty({}, name, value), function () {
                 console.log(_this.state);
             });
+        }, _this.submitFilters = function () {
+            var _this$props3 = _this.props,
+                match = _this$props3.match,
+                location = _this$props3.location,
+                history = _this$props3.history;
+            var _this$state = _this.state,
+                min_price = _this$state.min_price,
+                max_price = _this$state.max_price,
+                sort_dropdown = _this$state.sort_dropdown,
+                view_select = _this$state.view_select;
+            // history.push(`/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}`)
+
+            var queryParams = _queryString2.default.parse(_this.props.location.search);
+            document.location.href = '/' + match.params.city + '/' + match.params.category + '?min_price=' + min_price + '&max_price=' + max_price + '&sort_dropdown=' + sort_dropdown + '&view_select=' + view_select;
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -481,17 +510,36 @@ var Category = function (_Component) {
                 match = _props.match,
                 history = _props.history;
 
-            // Make a request for a user with a given ID
+            var queryParams = _queryString2.default.parse(this.props.location.search);
+            var min_price = queryParams.min_price,
+                max_price = queryParams.max_price,
+                sort_dropdown = queryParams.sort_dropdown,
+                view_select = queryParams.view_select;
 
-            _axios2.default.get('/api/' + match.params.city + '/' + match.params.category).then(function (response) {
-                _this2.setState({
-                    itemsData: response.data
-                }, function () {
-                    console.log(_this2.state);
+
+            if (queryParams.min_price != undefined) {
+                // Get request comes from URL after destructuring queryParams object above
+                _axios2.default.get('/api/' + match.params.city + '/' + match.params.category + '?min_price=' + min_price + '&max_price=' + max_price + '&sort_dropdown=' + sort_dropdown + '&view_select=' + view_select).then(function (response) {
+                    _this2.setState({
+                        itemsData: response.data
+                    }, function () {
+                        console.log(_this2.state);
+                    });
+                }).catch(function (error) {
+                    console.log(error);
                 });
-            }).catch(function (error) {
-                console.log(error);
-            });
+            } else {
+                // Make a request for a user with a given ID
+                _axios2.default.get('/api/' + match.params.city + '/' + match.params.category).then(function (response) {
+                    _this2.setState({
+                        itemsData: response.data
+                    }, function () {
+                        console.log(_this2.state);
+                    });
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
         }
     }, {
         key: 'render',
@@ -532,42 +580,8 @@ var Category = function (_Component) {
                                     ),
                                     _react2.default.createElement(
                                         'option',
-                                        { value: '1000' },
-                                        '1000'
-                                    ),
-                                    _react2.default.createElement(
-                                        'option',
-                                        { value: '2500' },
-                                        '2500'
-                                    ),
-                                    _react2.default.createElement(
-                                        'option',
-                                        { value: '3000' },
-                                        '3000'
-                                    ),
-                                    _react2.default.createElement(
-                                        'option',
                                         { value: '5000' },
                                         '5000'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'select',
-                                    { name: 'max_price', value: this.state.max_price, className: 'max-price', onChange: this.handleChange },
-                                    _react2.default.createElement(
-                                        'option',
-                                        { value: '1000' },
-                                        '1000'
-                                    ),
-                                    _react2.default.createElement(
-                                        'option',
-                                        { value: '5000' },
-                                        '5000'
-                                    ),
-                                    _react2.default.createElement(
-                                        'option',
-                                        { value: '7000' },
-                                        '7000'
                                     ),
                                     _react2.default.createElement(
                                         'option',
@@ -576,8 +590,102 @@ var Category = function (_Component) {
                                     ),
                                     _react2.default.createElement(
                                         'option',
-                                        { value: '15000' },
-                                        '15000'
+                                        { value: '20000' },
+                                        '20000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '30000' },
+                                        '30000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '40000' },
+                                        '40000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '50000' },
+                                        '50000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '60000' },
+                                        '60000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '70000' },
+                                        '70000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '80000' },
+                                        '80000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '90000' },
+                                        '90000'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'select',
+                                    { name: 'max_price', value: this.state.max_price, className: 'max-price', onChange: this.handleChange },
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '5000' },
+                                        '5000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '10000' },
+                                        '10000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '20000' },
+                                        '20000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '30000' },
+                                        '30000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '40000' },
+                                        '40000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '50000' },
+                                        '50000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '60000' },
+                                        '60000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '70000' },
+                                        '70000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '80000' },
+                                        '80000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '90000' },
+                                        '90000'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        { value: '100000' },
+                                        '100000'
                                     )
                                 )
                             )
@@ -588,7 +696,7 @@ var Category = function (_Component) {
                             { className: 'form-group button' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'update-btn' },
+                                { className: 'update-btn', onClick: this.submitFilters },
                                 'Update'
                             ),
                             _react2.default.createElement(
@@ -672,7 +780,7 @@ exports.default = Category;
 
 /***/ }),
 
-/***/ 144:
+/***/ 145:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -692,7 +800,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Gallery = __webpack_require__(147);
+var _Gallery = __webpack_require__(148);
 
 var _Gallery2 = _interopRequireDefault(_Gallery);
 
@@ -719,7 +827,7 @@ var Details = function (_Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Details.__proto__ || Object.getPrototypeOf(Details)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            name: 'Jean'
+            name: 'jean'
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -978,7 +1086,7 @@ exports.default = Details;
 
 /***/ }),
 
-/***/ 145:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -998,7 +1106,9 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(42);
+var _reactRouterDom = __webpack_require__(41);
+
+var _axios = __webpack_require__(43);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1039,10 +1149,8 @@ var Home = function (_Component) {
                     var loopListings = function loopListings() {
                         return category.listings.map(function (listing, index) {
                             return _react2.default.createElement(
-                                'a',
-                                { key: index,
-                                    href: match.params.city + '/' + category.title + '/' + listing.slug,
-                                    className: 'link' },
+                                _reactRouterDom.Link,
+                                { to: '/' + match.params.city + '/' + category.title + '/' + listing.slug, key: index },
                                 listing.name
                             );
                         });
@@ -1153,7 +1261,7 @@ exports.default = Home;
 
 /***/ }),
 
-/***/ 146:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1402,7 +1510,7 @@ exports.default = Listings;
 
 /***/ }),
 
-/***/ 147:
+/***/ 148:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1534,4 +1642,4 @@ exports.default = Gallery;
 
 /***/ })
 
-},[141]);
+},[142]);

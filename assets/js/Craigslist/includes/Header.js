@@ -1,5 +1,6 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -24,7 +25,6 @@ class Header extends Component {
               citiesData: response.data,
               selectedCity: city[0].title
           }, () => {
-
                 document.body.style.backgroundImage = 
                 `linear-gradient(135deg, rgba(52,69,247,.8) 0%, 
                 rgba(160,39,230,.8) 100%), url(${city[0].img})`
@@ -55,6 +55,9 @@ class Header extends Component {
         })
         const {match, history} = this.props
             history.push(`/${city[0].slug}`)
+            document.body.style.backgroundImage = 
+            `linear-gradient(135deg, rgba(52,69,247,.8) 0%, 
+            rgba(160,39,230,.8) 100%), url(${city[0].img})`
       })
     }
 
@@ -72,12 +75,13 @@ class Header extends Component {
   
 
   render () {
+    const {match, history} = this.props
     const {cityDropDownMenu, selectedCity} = this.state;
     return (
         <div className={'container'}>
           <header>
             <div className={'left-menu'}>
-              <div className={'logo'}>Craigslist</div>
+              <Link to={`/${match.params.city}`} className={'logo'}>Craigslist</Link>
               <div className={'city-dropdown'} onClick={this.CityDropDownBtn}>{selectedCity}
                 <i className={`fas fa-chevron-down ${(cityDropDownMenu) ? 'fa-chevron-up': 'fa-chevron-down'}`}/>
                 <div className={`scroll-area ${(cityDropDownMenu) ? 'active': ''}`}>
@@ -89,7 +93,7 @@ class Header extends Component {
             </div>
 
             <div className={'right-menu'}>
-              <div className={'user-img'}>img</div>
+              <div className={'user-img'}><i className={'far fa-user'}></i></div>
               <div className={'user-dropdown'}>my account 
                 <i className={`fas fa-chevron-down`}></i>
             </div>

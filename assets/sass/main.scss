@@ -34,11 +34,20 @@ header {
   .left-menu {
 
     display: flex;
-    align-items: center;
+    // align-items: center;
 
     .logo {
       font-size: 2rem;
       padding-right: 15px;
+      color: #fff;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      &:hover {
+        color: yellow;
+      }
     }
 
     .city-dropdown {
@@ -82,6 +91,15 @@ header {
   .right-menu {
     display: flex;
     align-items: center;
+
+    .user-img {
+      cursor: pointer;
+      .far{
+        &:hover {
+          color: yellow;
+        }
+      }
+    }
 
     .post-btn {
       font-weight: 300;

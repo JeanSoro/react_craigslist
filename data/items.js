@@ -3,9 +3,9 @@ module.exports = [
     {
         title: 'black car 2016 bmw',
         listing: 'cars-and-trucks',
-        city: 'Montreal',
+        city: 'tdot',
         category: 'for-sale',
-        price: '55000',
+        price: 55000,
         extraDetails: {
             vin: 'ghsnuf4445jo45',
             miles: 34593,
@@ -33,9 +33,9 @@ module.exports = [
     {
         title: 'mercedes benz 2002',
         listing: 'cars-and-trucks',
-        city: 'Toronto',
+        city: 'mtl',
         category: 'for-sale',
-        price: '35000',
+        price: 35000,
         extraDetails: {
             vin: 'ghsnuf4445jo45',
             miles: 44593,
@@ -64,7 +64,7 @@ module.exports = [
         listing: 'cars-and-trucks',
         city: 'mtl',
         category: 'for-sale',
-        price: '15000',
+        price: 15000,
         extraDetails: {
             vin: 'plojfr859504',
             miles: 23583,

@@ -5,8 +5,8 @@ import Gallery from './components/Gallery'
 class Details extends Component {
   
     state = {
-      name: 'Jean'
-    }
+        name: 'jean'
+      }
   
 
   render () {

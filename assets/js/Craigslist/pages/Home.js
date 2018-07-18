@@ -1,5 +1,6 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 class Home extends Component {
@@ -37,10 +38,9 @@ class Home extends Component {
                 const loopListings = () => {
                 return  category.listings.map((listing, index) => {
                     return (
-                        <a  key={index} 
-                            href={`${match.params.city}/${category.title}/${listing.slug}`} 
-                            className={'link'}>{listing.name}
-                        </a>  
+                        <Link to={`/${match.params.city}/${category.title}/${listing.slug}`} key={index}>
+                            {listing.name}
+                        </Link>  
                     )
                 })
             }
