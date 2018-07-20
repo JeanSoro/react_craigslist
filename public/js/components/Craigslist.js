@@ -194,7 +194,7 @@ var Header = function (_Component) {
             history = _this$props.history;
 
         history.push('/' + city[0].slug);
-        document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n            rgba(160,39,230,.8) 100%), url(' + city[0].img + ')', 'width: 100%';
+        document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n            rgba(160,39,230,.8) 100%), url(' + city[0].img + ')';
       });
     }, _this.citiesLoop = function () {
       var citiesData = _this.state.citiesData;
@@ -229,7 +229,7 @@ var Header = function (_Component) {
           citiesData: response.data,
           selectedCity: city[0].title
         }, function () {
-          document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n                rgba(160,39,230,.8) 100%), url(' + city[0].img + ')', 'width: 100%';
+          document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n                rgba(160,39,230,.8) 100%), url(' + city[0].img + ')';
           // console.log(this.state.citiesData)
         });
       }).catch(function (error) {
