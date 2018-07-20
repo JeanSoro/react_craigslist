@@ -9,14 +9,15 @@
 }
 
 
-body {
+body,
+html {
 
   // background-image: linear-gradient(135deg, rgba(52,69,247,.8) 0%, rgba(160,39,230,.8) 100%), url('/img/montreal-hero.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   font-family: 'Roboto', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   // max-width: 100%;
   // margin: 0 20px;
   
