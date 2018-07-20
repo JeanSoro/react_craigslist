@@ -74,43 +74,6 @@ module.exports = [
         ]
       },
       {
-      title: "community",
-      listings: [
-          {
-            name: 'activities',
-            slug: 'activities'
-          },
-          {
-            name: 'artists',
-            slug: 'artists'
-          },
-          {
-            name: 'childcare',
-            slug: 'childcare'
-          },
-          {
-            name: 'events',
-            slug: 'events'
-          },
-          {
-            name: 'rideshare',
-            slug: 'rideshare'
-          },
-          {
-            name: 'local news',
-            slug: 'local-news'
-          },
-          {
-            name: 'volunteers',
-            slug: 'volunteers'
-          },
-          {
-            name: 'pets',
-            slug: 'pets'
-          },
-      ]
-    },
-    {
         title: "jobs",
         listings: [
             {

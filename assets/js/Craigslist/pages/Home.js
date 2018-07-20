@@ -31,7 +31,7 @@ class Home extends Component {
     }
   
   loopCategories = () => {
-      const {match,history} = this.props
+      const {match, history} = this.props
         if(this.state.categoriesData != '') {
             return this.state.categoriesData.map( ( category, index ) => {
 
@@ -62,12 +62,12 @@ class Home extends Component {
   }
 
   loopTags = () => {
-      let testTags = ['a','b','c','d','e','f','g']
+      let testTags = ['Apple Macbook','Playstation 4','SONY 4k HD TV','CryptoCurrency','Personal Trainer','Security Services','Escort Services']
       return testTags.map( ( tag, i ) => {
         return (
             <div 
                 key={i} 
-                className={'tag'}>Apple Macbook
+                className={'tag'}>{tag}
             </div>
         )
       })

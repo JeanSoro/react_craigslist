@@ -194,7 +194,7 @@ var Header = function (_Component) {
             history = _this$props.history;
 
         history.push('/' + city[0].slug);
-        document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n            rgba(160,39,230,.8) 100%), url(' + city[0].img + ')';
+        document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n            rgba(160,39,230,.8) 100%), url(' + city[0].img + ')', 'width: 100%';
       });
     }, _this.citiesLoop = function () {
       var citiesData = _this.state.citiesData;
@@ -229,7 +229,7 @@ var Header = function (_Component) {
           citiesData: response.data,
           selectedCity: city[0].title
         }, function () {
-          document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n                rgba(160,39,230,.8) 100%), url(' + city[0].img + ')';
+          document.body.style.backgroundImage = 'linear-gradient(135deg, rgba(52,69,247,.8) 0%, \n                rgba(160,39,230,.8) 100%), url(' + city[0].img + ')', 'width: 100%';
           // console.log(this.state.citiesData)
         });
       }).catch(function (error) {
@@ -363,20 +363,24 @@ var Category = function (_Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Category.__proto__ || Object.getPrototypeOf(Category)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            min_price: 1000,
-            max_price: 15000,
+            min_price: 0,
+            max_price: 100000,
             sort_dropdown: 'newest',
-            view_select: 'gallery'
+            view_select: 'gallery',
+            car_make: 'bmw',
+            car_model: 'm6'
         }, _this.loopItems = function () {
             var _this$props = _this.props,
                 match = _this$props.match,
+                location = _this$props.location,
                 history = _this$props.history;
 
             if (_this.state.itemsData != undefined) {
                 return _this.state.itemsData.map(function (item, index) {
+                    console.log(_this.state.itemsData);
                     return _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { key: index, to: '/' + match.params.city + '/' + match.params.category + '/' + match.params.listings + '/' + match.params.item, className: 'item' },
+                        'a',
+                        { key: index, className: 'item' },
                         _react2.default.createElement(
                             'div',
                             { className: 'image', style: {
@@ -429,7 +433,7 @@ var Category = function (_Component) {
                         ),
                         _react2.default.createElement(
                             'select',
-                            { name: 'car_make', className: 'car-make', onChange: _this.handleChange },
+                            { name: 'car_make', value: _this.state.car_make, className: 'car-make', onChange: _this.handleChange },
                             _react2.default.createElement(
                                 'option',
                                 { value: 'bmw' },
@@ -438,12 +442,12 @@ var Category = function (_Component) {
                             _react2.default.createElement(
                                 'option',
                                 { value: 'mercedes' },
-                                'mercedes benz'
+                                'mercedes'
                             ),
                             _react2.default.createElement(
                                 'option',
                                 { value: 'nissan' },
-                                'Nissan'
+                                'nissan'
                             )
                         )
                     ),
@@ -457,21 +461,31 @@ var Category = function (_Component) {
                         ),
                         _react2.default.createElement(
                             'select',
-                            { name: 'car_model', className: 'car-model', onChange: _this.handleChange },
+                            { name: 'car_model', value: _this.state.car_model, className: 'car-model', onChange: _this.handleChange },
                             _react2.default.createElement(
                                 'option',
-                                { value: 'M6' },
-                                'M6'
+                                { value: 'm6' },
+                                'm6'
                             ),
                             _react2.default.createElement(
                                 'option',
-                                { value: 'X6' },
-                                'M6'
+                                { value: 'x6' },
+                                'x6'
                             ),
                             _react2.default.createElement(
                                 'option',
-                                { value: 'c-series' },
-                                'C-series'
+                                { value: 'x3' },
+                                'x3'
+                            ),
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'amg300' },
+                                'amg300'
+                            ),
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'altima' },
+                                'altima'
                             )
                         )
                     )
@@ -493,11 +507,13 @@ var Category = function (_Component) {
                 min_price = _this$state.min_price,
                 max_price = _this$state.max_price,
                 sort_dropdown = _this$state.sort_dropdown,
-                view_select = _this$state.view_select;
+                view_select = _this$state.view_select,
+                car_make = _this$state.car_make,
+                car_model = _this$state.car_model;
             // history.push(`/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}`)
 
             var queryParams = _queryString2.default.parse(_this.props.location.search);
-            document.location.href = '/' + match.params.city + '/' + match.params.category + '?min_price=' + min_price + '&max_price=' + max_price + '&sort_dropdown=' + sort_dropdown + '&view_select=' + view_select;
+            document.location.href = '/' + match.params.city + '/' + match.params.category + '?min_price=' + min_price + '&max_price=' + max_price + '&sort_dropdown=' + sort_dropdown + '&view_select=' + view_select + '&car_make=' + car_make + '&car_model=' + car_model;
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -514,12 +530,14 @@ var Category = function (_Component) {
             var min_price = queryParams.min_price,
                 max_price = queryParams.max_price,
                 sort_dropdown = queryParams.sort_dropdown,
-                view_select = queryParams.view_select;
+                view_select = queryParams.view_select,
+                car_make = queryParams.car_make,
+                car_model = queryParams.car_model;
 
 
             if (queryParams.min_price != undefined) {
                 // Get request comes from URL after destructuring queryParams object above
-                _axios2.default.get('/api/' + match.params.city + '/' + match.params.category + '?min_price=' + min_price + '&max_price=' + max_price + '&sort_dropdown=' + sort_dropdown + '&view_select=' + view_select).then(function (response) {
+                _axios2.default.get('/api/' + match.params.city + '/' + match.params.category + '?min_price=' + min_price + '&max_price=' + max_price + '&sort_dropdown=' + sort_dropdown + '&view_select=' + view_select + '&car_make=' + car_make + '&car_model=' + car_model).then(function (response) {
                     _this2.setState({
                         itemsData: response.data
                     }, function () {
@@ -852,20 +870,7 @@ var Details = function (_Component) {
                         _react2.default.createElement(
                             'section',
                             { className: 'sub-menu' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'direction' },
-                                _react2.default.createElement(
-                                    'a',
-                                    { className: 'prev', href: '#' },
-                                    'Prev'
-                                ),
-                                _react2.default.createElement(
-                                    'a',
-                                    { className: 'next', href: '#' },
-                                    'Next'
-                                )
-                            ),
+                            _react2.default.createElement('div', { className: 'direction' }),
                             _react2.default.createElement(
                                 'nav',
                                 { className: 'sub-links' },
@@ -961,90 +966,6 @@ var Details = function (_Component) {
                                             null,
                                             '6-Speed Automatic'
                                         )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'info' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            null,
-                                            'Vin'
-                                        ),
-                                        _react2.default.createElement(
-                                            'h5',
-                                            null,
-                                            'wueufhfhg'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'info' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            null,
-                                            'Mileage'
-                                        ),
-                                        _react2.default.createElement(
-                                            'h5',
-                                            null,
-                                            '5675'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'info' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            null,
-                                            'Transmission'
-                                        ),
-                                        _react2.default.createElement(
-                                            'h5',
-                                            null,
-                                            '6-Speed Automatic'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'info' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            null,
-                                            'Vin'
-                                        ),
-                                        _react2.default.createElement(
-                                            'h5',
-                                            null,
-                                            'wueufhfhg'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'info' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            null,
-                                            'Mileage'
-                                        ),
-                                        _react2.default.createElement(
-                                            'h5',
-                                            null,
-                                            '5675'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'info' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            null,
-                                            'Transmission'
-                                        ),
-                                        _react2.default.createElement(
-                                            'h5',
-                                            null,
-                                            '6-Speed Automatic'
-                                        )
                                     )
                                 ),
                                 _react2.default.createElement(
@@ -1054,16 +975,6 @@ var Details = function (_Component) {
                                         'label',
                                         null,
                                         'Description'
-                                    ),
-                                    _react2.default.createElement(
-                                        'p',
-                                        null,
-                                        'Lorem ipsum dolor amet la croix messenger bag seitan pabst polaroid sriracha skateboard cred succulents four loko woke paleo wolf gastropub. Yuccie flexitarian locavore DIY vinyl blog intelligentsia +1. Flannel beard hexagon truffaut vape hashtag, actually franzen jean shorts vinyl migas pop-up crucifix. Whatever raclette 3 wolf moon fanny pack ugh echo park succulents.'
-                                    ),
-                                    _react2.default.createElement(
-                                        'p',
-                                        null,
-                                        'Lorem ipsum dolor amet la croix messenger bag seitan pabst polaroid sriracha skateboard cred succulents four loko woke paleo wolf gastropub. Yuccie flexitarian locavore DIY vinyl blog intelligentsia +1. Flannel beard hexagon truffaut vape hashtag, actually franzen jean shorts vinyl migas pop-up crucifix. Whatever raclette 3 wolf moon fanny pack ugh echo park succulents.'
                                     ),
                                     _react2.default.createElement(
                                         'p',
@@ -1175,14 +1086,14 @@ var Home = function (_Component) {
                 return 'Page loading...';
             }
         }, _this.loopTags = function () {
-            var testTags = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+            var testTags = ['Apple Macbook', 'Playstation 4', 'SONY 4k HD TV', 'CryptoCurrency', 'Personal Trainer', 'Security Services', 'Escort Services'];
             return testTags.map(function (tag, i) {
                 return _react2.default.createElement(
                     'div',
                     {
                         key: i,
                         className: 'tag' },
-                    'Apple Macbook'
+                    tag
                 );
             });
         }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -1586,7 +1497,8 @@ var Gallery = function (_Component) {
     _createClass(Gallery, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
-            var allImages = ['https://images.craigslist.org/00N0N_idugwYz2hRQ_600x450.jpg', 'https://images.craigslist.org/00101_7LFMtwt3nCq_50x50c.jpg', 'https://images.craigslist.org/00t0t_2mNCXwmIxBf_50x50c.jpg', 'https://images.craigslist.org/00Q0Q_bHIBhunOdcn_50x50c.jpg', 'https://images.craigslist.org/00u0u_h1lmzwHLqCO_50x50c.jpg', 'https://images.craigslist.org/00z0z_8M6oeQER2YP_50x50c.jpg'];
+
+            var allImages = ["https://i.pinimg.com/originals/4b/6f/a6/4b6fa697f3d68574dd17ff392c12824a.jpg", "https://i.pinimg.com/736x/e9/e0/76/e9e076a23415c42802c6b17201a7edfa--electric-motor-bmw-x.jpg", "https://cdn.bmwblog.com/wp-content/uploads/test-drive-2014-bmw-x3-facelift-22-750x500.jpg", "https://cdn.bmwblog.com/wp-content/uploads/BMW-X3-xDrive20d-2014-F25-LCI-B47-Diesel-Motor-022-750x500.jpg", "https://cdn.autoportal.com/img/feature/84/main/main.orig.jpg", "https://cdn.bmwblog.com/wp-content/uploads/2015/06/2016-bmw-7-series-key-fob-images-1900x1200-02-750x500.jpg"];
 
             this.setState({
                 allImages: allImages,

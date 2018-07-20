@@ -11,14 +11,15 @@ class Gallery extends Component {
     }
 
     componentWillMount() {
-        const allImages = [ 
-            'https://images.craigslist.org/00N0N_idugwYz2hRQ_600x450.jpg',
-            'https://images.craigslist.org/00101_7LFMtwt3nCq_50x50c.jpg',
-            'https://images.craigslist.org/00t0t_2mNCXwmIxBf_50x50c.jpg',
-            'https://images.craigslist.org/00Q0Q_bHIBhunOdcn_50x50c.jpg',
-            'https://images.craigslist.org/00u0u_h1lmzwHLqCO_50x50c.jpg',
-            'https://images.craigslist.org/00z0z_8M6oeQER2YP_50x50c.jpg'
-          ]
+
+        const allImages = [
+            "https://i.pinimg.com/originals/4b/6f/a6/4b6fa697f3d68574dd17ff392c12824a.jpg",
+            "https://i.pinimg.com/736x/e9/e0/76/e9e076a23415c42802c6b17201a7edfa--electric-motor-bmw-x.jpg",
+            "https://cdn.bmwblog.com/wp-content/uploads/test-drive-2014-bmw-x3-facelift-22-750x500.jpg",
+            "https://cdn.bmwblog.com/wp-content/uploads/BMW-X3-xDrive20d-2014-F25-LCI-B47-Diesel-Motor-022-750x500.jpg",
+            "https://cdn.autoportal.com/img/feature/84/main/main.orig.jpg",
+            "https://cdn.bmwblog.com/wp-content/uploads/2015/06/2016-bmw-7-series-key-fob-images-1900x1200-02-750x500.jpg"
+        ]
 
         this.setState({
             allImages,

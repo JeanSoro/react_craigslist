@@ -7,20 +7,22 @@ import qs from 'query-string'
 class Category extends Component {
   
     state = {
-        min_price: 1000,
-        max_price: 15000,
+        min_price: 0,
+        max_price: 100000,
         sort_dropdown: 'newest',
-        view_select: 'gallery'
+        view_select: 'gallery',
+        car_make:'bmw',
+        car_model: 'm6'
     };
 
     componentWillMount(){
         const {match, history} = this.props
         const queryParams = qs.parse(this.props.location.search)
-        const {min_price, max_price, sort_dropdown, view_select} = queryParams
+        const {min_price, max_price, sort_dropdown, view_select, car_make, car_model} = queryParams
 
         if( queryParams.min_price != undefined ) {
             // Get request comes from URL after destructuring queryParams object above
-            axios.get(`/api/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}`)
+            axios.get(`/api/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}&car_make=${car_make}&car_model=${car_model}`)
             .then((response) => {
                 this.setState({
                     itemsData: response.data
@@ -49,11 +51,12 @@ class Category extends Component {
     }
 
     loopItems = () => {
-        const {match, history} = this.props
+        const {match, location, history} = this.props
         if(this.state.itemsData != undefined) {
             return this.state.itemsData.map( ( item, index ) => {
+                console.log(this.state.itemsData)
                 return(
-                    <Link key={index} to={`/${match.params.city}/${match.params.category}/${match.params.listings}/${match.params.item}`} className={'item'}>
+                    <a key={index} className={'item'}>
                         <div  className={'image'} style={{
                             backgroundImage: `url('${item.images[0]}')`
                         }}>
@@ -64,7 +67,8 @@ class Category extends Component {
                             <h5>{item.title}</h5>
                             <h6>{item.city}</h6>
                         </div>
-                     </Link>
+                    </a>
+                     
                 )
             })
         }
@@ -78,24 +82,26 @@ class Category extends Component {
                 <div className={'make-model-component'}>
                     <div className={'form-group car-make'}>
                         <label>Make</label>
-                        <select name={'car_make'} className={'car-make'} onChange={this.handleChange}>
+                        <select name={'car_make'} value={this.state.car_make} className={'car-make'} onChange={this.handleChange}>
                             <option value={'bmw'}>bmw</option>
-                            <option value={'mercedes'}>mercedes benz</option>
-                            <option value={'nissan'}>Nissan</option>
+                            <option value={'mercedes'}>mercedes</option>
+                            <option value={'nissan'}>nissan</option>
                         </select>
                     </div>
 
                     <div className={'form-group car-model'}>
                         <label>Model</label>
-                        <select name={'car_model'} className={'car-model'} onChange={this.handleChange}>
-                            <option value={'M6'}>M6</option>
-                            <option value={'X6'}>M6</option>
-                            <option value={'c-series'}>C-series</option>
+                        <select name={'car_model'} value={this.state.car_model} className={'car-model'} onChange={this.handleChange}>
+                            <option value={'m6'}>m6</option>
+                            <option value={'x6'}>x6</option>
+                            <option value={'x3'}>x3</option>
+                            <option value={'amg300'}>amg300</option>
+                            <option value={'altima'}>altima</option>
                         </select>
                     </div>
                 </div>
-            )
-        }     
+            )   
+        }    
     }
 
     handleChange = (e) => {
@@ -111,10 +117,10 @@ class Category extends Component {
 
     submitFilters = () => {
         const { match, location, history } = this.props
-        const {min_price, max_price, sort_dropdown, view_select} = this.state
+        const {min_price, max_price, sort_dropdown, view_select, car_make, car_model} = this.state
         // history.push(`/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}`)
         const queryParams = qs.parse(this.props.location.search)
-        document.location.href = `/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}`   
+        document.location.href = `/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort_dropdown=${sort_dropdown}&view_select=${view_select}&car_make=${car_make}&car_model=${car_model}`   
 
     }
 
@@ -141,7 +147,6 @@ class Category extends Component {
                                 <option value={'70000'}>70000</option>
                                 <option value={'80000'}>80000</option>
                                 <option value={'90000'}>90000</option>
-
                             </select>
                             <select name={'max_price'} value={this.state.max_price} className={'max-price'} onChange={this.handleChange}>
                                 <option value={'5000'}>5000</option>

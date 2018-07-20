@@ -1,4 +1,6 @@
 .home {
+
+      
     h1 {
         color: #fff;
         font-size: 4rem;
@@ -14,7 +16,10 @@
         padding: 20px;
         margin-bottom: 70px;
 
+        
+
         .categories {
+            
             .title {
                 display: block;
                 font-size: 1.3rem;
@@ -62,7 +67,7 @@
         .trends-title {
             color:#fff;
             font-size: 1rem;
-            fontweight: 300;
+            font-weight: 300;
             text-align: center;
             padding: 20px;
             text-transform: uppercase
@@ -90,5 +95,8 @@
                 
             }
         }
-    }
+  
+      }
 }
+
+

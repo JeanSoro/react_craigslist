@@ -13,7 +13,6 @@ class App extends Component {
       name: 'Jean'
     }
   
-
   render () {
     return (
       <Router>

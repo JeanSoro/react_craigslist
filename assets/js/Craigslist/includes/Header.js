@@ -27,7 +27,7 @@ class Header extends Component {
           }, () => {
                 document.body.style.backgroundImage = 
                 `linear-gradient(135deg, rgba(52,69,247,.8) 0%, 
-                rgba(160,39,230,.8) 100%), url(${city[0].img})`
+                rgba(160,39,230,.8) 100%), url(${city[0].img})`,`width: 100%`
               // console.log(this.state.citiesData)
           });
       })
@@ -57,7 +57,7 @@ class Header extends Component {
             history.push(`/${city[0].slug}`)
             document.body.style.backgroundImage = 
             `linear-gradient(135deg, rgba(52,69,247,.8) 0%, 
-            rgba(160,39,230,.8) 100%), url(${city[0].img})`
+            rgba(160,39,230,.8) 100%), url(${city[0].img})`, `width: 100%`;
       })
     }
 
